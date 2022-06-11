@@ -150,17 +150,13 @@ function install_docker() {
     else
         echo -e "${green}Installing docker${plain}"
         curl -fsSL https://get.docker.com | sudo bash
-        systemctl enable docker || service docker start
+        systemctl restart docker || service docker restart
     fi
 
     if ! command -v docker >/dev/null 2>&1; then
         echo -e "${red}docker installation failed, please check your environment${plain}"
         exit 1
     fi
-}
-
-function restart_docker() {
-    systemctl restart docker || service docker restart
 }
 
 
@@ -210,7 +206,6 @@ function fly() {
     check_os
     install_base
     install_docker
-    restart_docker
     set_peer2profit_email
     set_traffmonetizer_token
     start_containers
