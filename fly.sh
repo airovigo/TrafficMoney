@@ -150,7 +150,7 @@ function install_docker() {
     else
         echo -e "${green}Installing docker${plain}"
         curl -fsSL https://get.docker.com | sudo bash
-        systemctl enable docker || service docker start
+        systemctl restart docker || service docker restart
     fi
 
     if ! command -v docker >/dev/null 2>&1; then
