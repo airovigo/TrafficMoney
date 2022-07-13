@@ -7,12 +7,7 @@ yellow='\033[0;33m'
 plain='\033[0m'
 
 
-function set_vps_swap() {
-    # Skip if the virtualization is openVZ
-    if [[ -d /proc/vz ]]; then
-        echo -e "${green}OpenVZ virtualization detected, skipping add swap${plain}"
-        return
-    fi
+function set_vps_swap() 
     # Set swap size as two times of RAM size automatically
     if [ $(free | grep Swap | awk '{print $2}') -gt 0 ]; then
         echo -e "${green}Swap already enabled${plain}"
